@@ -156,3 +156,45 @@ footer {
 
 </body>
 </html>
+# FitBlock
+
+Welcome to FitBlock - the Future of Fitness!
+
+[![FitBlock](assets/fitblock_logo.png)](https://www.fitblock.com)
+
+## Key Features
+
+- **Goal Setting**: Set personalized fitness goals and track your progress.
+- **Staking Rewards**: Earn rewards by staking tokens as you make progress towards your goals.
+- **Community Engagement**: Join a vibrant community of fitness enthusiasts, participate in challenges, and share achievements.
+- **Transparent and Secure**: Utilizes blockchain technology for secure and transparent fitness tracking.
+
+## Getting Started
+
+To get started with FitBlock, follow these steps:
+
+1. Clone the repository: `git clone https://github.com/fitblock/fitblock.git`
+2. Install dependencies: `npm install`
+3. Build and run the application: `npm start`
+
+For detailed instructions, refer to the [Documentation](https://github.com/fitblock/fitblock/wiki).
+
+## Contributing
+
+We welcome contributions from the community. If you find any issues or have suggestions for improvements, please open an issue or submit a pull request. Let's work together to shape the future of fitness!
+
+## License
+
+This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
+
+## Contact
+
+For questions or inquiries, please contact our team at contact@fitblock.com.
+
+Visit our website: [fitblock.com](https://www.fitblock.com)
+
+---
+
+**FitBlock** - Transforming Fitness through Blockchain
+
+Join us and revolutionize your fitness journey with FitBlock.
