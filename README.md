@@ -64,3 +64,95 @@ FitBlock: The fitness app revolutionizing goals, rewards, and community engageme
   <script src="scripts.js"></script>
 </body>
 </html>
+/* Add your custom styles here */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #f8f8f8;
+  padding: 20px;
+}
+
+nav {
+  /* Add your navigation styles */
+}
+
+.hero {
+  background-image: url('path/to/hero-image.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-content {
+  text-align: center;
+  color: #fff;
+}
+
+.features {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+
+.feature {
+  width: 300px;
+  padding: 20px;
+  margin: 20px;
+  text-align: center;
+}
+
+.invest-now {
+  background-color: #f8f8f8;
+  padding: 40px;
+  text-align: center;
+}
+
+.contact-us {
+  background-color: #fff;
+  padding: 40px;
+  text-align: center;
+}
+
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+.btn {
+  /* Add your button styles */
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fitness Video Library</title>
+</head>
+<body>
+  <h1>Fitness Video Library</h1>
+
+  <div class="video-container">
+    <h2>Athlete Name - Workout Title</h2>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0" allowfullscreen></iframe>
+  </div>
+
+  <div class="video-container">
+    <h2>Athlete Name - Workout Title</h2>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0" allowfullscreen></iframe>
+  </div>
+
+  <!-- Add more video containers as needed -->
+
+</body>
+</html>
