@@ -1,4 +1,58 @@
-name: Deer-Flow + ClawTeam Full Setup
+#!/bin/bash
+set -e  # Exit on any error
+
+echo "🦌 Starting full Deer-Flow setup for Termux..."
+
+# -------------------------
+# 0️⃣ Keep Termux awake
+# -------------------------
+termux-wake-lock
+
+# -------------------------
+# 1️⃣ Update Termux & install essentials
+# -------------------------
+echo "🔹 Updating Termux & installing essential packages..."
+pkg update -y && pkg upgrade -y
+pkg install -y git python clang make curl nodejs-lts libffi build-essential nano
+
+# -------------------------
+# 2️⃣ Define directories
+# -------------------------
+DEERFLOW_DIR="$HOME/deer-flow"
+LOG_DIR="$DEERFLOW_DIR/logs"
+mkdir -p "$LOG_DIR"
+
+# -------------------------
+# 3️⃣ Clone or update Deer-Flow repo
+# -------------------------
+echo "🔹 Cloning/updating Deer-Flow repository..."
+cd $HOME
+if [ ! -d "deer-flow" ]; then
+    git clone https://github.com/bytedance/deer-flow.git $DEERFLOW_DIR
+else
+    cd $DEERFLOW_DIR && git pull
+fi
+
+cd $DEERFLOW_DIR
+git submodule update --init --recursive || true
+
+# -------------------------
+# 4️⃣ Install Poetry & plugins
+# -------------------------
+echo "🔹 Installing Poetry..."
+pip install --user poetry
+export PATH="$HOME/.local/bin:$PATH"
+
+# Add poetry-plugin-shell if not already added
+poetry self add poetry-plugin-shell || true
+
+# -------------------------
+# 5️⃣ Backend setup
+# -------------------------
+echo "🔹 Setting up backend..."
+cd $DEERFLOW_DIR/backend
+
+# Ensure Python is used in the backendname: Deer-Flow + ClawTeam Full Setup
 
 on:
   push:
