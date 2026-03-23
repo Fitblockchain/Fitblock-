@@ -1,4 +1,24 @@
-#!/bin/bash
+name: Deer-Flow + ClawTeam Full Setup
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python#!/bin/bash
 set -e  # Exit immediately if a command fails
 
 echo "🦌 Starting Deer-Flow full setup for Termux..."
