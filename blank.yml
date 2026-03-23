@@ -1,4 +1,94 @@
-mkdir -p ~/deer-flow/agents_beta/crypto_analyst
+name: Crypto Analyst + ClawTeam Setup & Run
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  setup_and_run:
+    runs-on: ubuntu-latest
+
+    steps:
+    # 1️⃣ Checkout repository
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    # 2️⃣ Setup Python
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    # 3️⃣ Install system dependencies
+    - name: Install system packages
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y git python3 python3-pip nano
+
+    # 4️⃣ Create necessary folders
+    - name: Create folders
+      run: |
+        mkdir -p ~/deer-flow/agents_beta/crypto_analyst
+        mkdir -p ~/deer-flow/scripts
+        mkdir -p ~/deer-flow/reports
+
+    # 5️⃣ Clone or update ClawTeam repo
+    - name: Clone or update ClawTeam repository
+      run: |
+        if [ ! -d "$HOME/ClawTeam" ]; then
+          echo "🔹 Cloning ClawTeam repository..."
+          git clone https://github.com/HKUDS/ClawTeam.git $HOME/ClawTeam
+        else
+          echo "🔹 ClawTeam exists, pulling latest changes..."
+          cd $HOME/ClawTeam && git pull
+        fi
+
+    # 6️⃣ Install Python dependencies if requirements.txt exists
+    - name: Install Python dependencies
+      run: |
+        if [ -f "$HOME/ClawTeam/requirements.txt" ]; then
+          pip install --upgrade -r $HOME/ClawTeam/requirements.txt
+        fi
+
+    # 7️⃣ Create agent run script
+    - name: Create run_crypto_agent.sh
+      run: |
+        cat > ~/deer-flow/scripts/run_crypto_agent.sh << 'EOF'
+        #!/bin/bash
+        set -e
+
+        DATE=$(date +%F)
+        REPORT_DIR="$HOME/deer-flow/reports"
+        AGENT_DIR="$HOME/deer-flow/agents_beta/crypto_analyst"
+
+        mkdir -p "$REPORT_DIR" "$AGENT_DIR"
+        cd "$AGENT_DIR"
+
+        # Copy ClawTeam files into agent folder
+        if [ -d "$HOME/ClawTeam" ]; then
+            cp -r $HOME/ClawTeam/* "$AGENT_DIR/"
+        fi
+
+        # Install Python dependencies if exist
+        if [ -f "requirements.txt" ]; then
+            pip install --upgrade -r requirements.txt
+        fi
+
+        # Run the agent main.py
+        if [ -f "main.py" ]; then
+            python main.py --output "$REPORT_DIR/crypto_report_$DATE.pdf"
+        fi
+
+        echo "✅ Report generated: $REPORT_DIR/crypto_report_$DATE.pdf"
+        EOF
+        chmod +x ~/deer-flow/scripts/run_crypto_agent.sh
+
+    # 8️⃣ Run the crypto agent
+    - name: Run Crypto Agent
+      run: ~/deer-flow/scripts/run_crypto_agent.shmkdir -p ~/deer-flow/agents_beta/crypto_analyst
 mkdir -p ~/deer-flow/scripts
 mkdir -p ~/deer-flow/reportsname: Crypto Analyst + ClawTeam Setup
 
