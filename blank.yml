@@ -1,0 +1,49 @@
+name: Crypto Analyst + ClawTeam Setup
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y git python3 python3-pip nano
+      
+      - name: Create necessary folders
+        run: |
+          mkdir -p ~/deer-flow/agents_beta/crypto_analyst
+          mkdir -p ~/deer-flow/scripts
+          mkdir -p ~/deer-flow/reports
+      
+      - name: Clone or update ClawTeam repo
+        run: |
+          if [ ! -d "$HOME/ClawTeam" ]; then
+            echo "🔹 Cloning ClawTeam repository..."
+            git clone https://github.com/HKUDS/ClawTeam.git $HOME/ClawTeam
+          else
+            echo "🔹 ClawTeam exists, pulling latest changes..."
+            cd $HOME/ClawTeam && git pull
+          fi
+      
+      - name: Setup crypto agent
+        run: |
+          echo "🦌 Crypto Analyst + ClawTeam setup complete!"
+          echo "✅ Folders created"
+          echo "✅ ClawTeam repository ready"
+          echo "✅ Environment prepared"
