@@ -1,4 +1,68 @@
-name: Crypto Analyst + ClawTeam Setup & Run
+name: Crypto Analyst + ClawTeam Agent
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch:
+
+jobs:
+  run-agent:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    - name: Install system dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y git python3 python3-pip nano
+
+    - name: Create necessary folders
+      run: |
+        mkdir -p ~/deer-flow/agents_beta/crypto_analyst
+        mkdir -p ~/deer-flow/scripts
+        mkdir -p ~/deer-flow/reports
+
+    - name: Clone or update ClawTeam repo
+      run: |
+        if [ ! -d "$HOME/ClawTeam" ]; then
+          git clone https://github.com/HKUDS/ClawTeam.git $HOME/ClawTeam
+        else
+          cd $HOME/ClawTeam && git pull
+        fi
+
+    - name: Copy ClawTeam into agent folder
+      run: |
+        cp -r $HOME/ClawTeam/* ~/deer-flow/agents_beta/crypto_analyst/
+
+    - name: Install Python dependencies
+      run: |
+        AGENT_DIR=~/deer-flow/agents_beta/crypto_analyst
+        if [ -f "$AGENT_DIR/requirements.txt" ]; then
+          pip install --upgrade -r $AGENT_DIR/requirements.txt
+        fi
+
+    - name: Run Crypto Analyst agent
+      run: |
+        DATE=$(date +%F)
+        AGENT_DIR=~/deer-flow/agents_beta/crypto_analyst
+        REPORT_DIR=~/deer-flow/reports
+        mkdir -p "$REPORT_DIR"
+        if [ -f "$AGENT_DIR/main.py" ]; then
+          python $AGENT_DIR/main.py --output "$REPORT_DIR/crypto_report_$DATE.pdf"
+        fi
+
+    - name: Show report
+      run: |
+        ls -lh ~/deer-flow/reports/name: Crypto Analyst + ClawTeam Setup & Run
 
 on:
   push:
