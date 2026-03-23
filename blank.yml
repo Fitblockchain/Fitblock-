@@ -1,4 +1,40 @@
-name: Deer-Flow + ClawTeam Full Setup
+cd ~cat > run-deerflow.sh#!/bin/bash
+
+echo "🦌 Starting Deer-Flow..."
+
+DEERFLOW_DIR="$HOME/deer-flow"
+LOG_DIR="$DEERFLOW_DIR/logs"
+
+mkdir -p "$LOG_DIR"
+
+export PATH="$HOME/.local/bin:$PATH"
+
+echo "🔹 Starting backend..."
+cd "$DEERFLOW_DIR/backend"
+
+poetry env use $(which python3) >/dev/null 2>&1 || true
+poetry run python -m app.main > "$LOG_DIR/backend.log" 2>&1 &
+
+BACKEND_PID=$!
+
+echo "🔹 Starting frontend..."
+cd "$DEERFLOW_DIR/frontend"
+
+export NEXT_DISABLE_SWCRC=true
+npm run dev -- --host 0.0.0.0 --port 2026 > "$LOG_DIR/frontend.log" 2>&1 &
+
+FRONTEND_PID=$!
+
+sleep 5
+
+echo "🌐 Opening UI..."
+am start -a android.intent.action.VIEW -d "http://localhost:2026/"
+
+echo "Backend PID: $BACKEND_PID"
+echo "Frontend PID: $FRONTEND_PID"
+
+trap "echo Stopping...; kill $BACKEND_PID $FRONTEND_PID; exit" SIGINT SIGTERM
+waitname: Deer-Flow + ClawTeam Full Setup
 
 on:
   push:
