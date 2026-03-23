@@ -1,4 +1,43 @@
-Welcome to Termux
+name: Deer-Flow Full Setup
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  setup-deerflow:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+
+      - name: Install system packages
+        run: |
+          sudo apt update
+          sudo apt install -y git curl npm build-essential libffi-dev python3-dev
+
+      - name: Install Poetry
+        run: |
+          pip install --user poetry
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+
+      - name: Clone ClawTeam Repo
+        run: |
+          if [ ! -d "$HOME/ClawTeam" ]; then
+            git clone https://github.com/ClawTeam/ClawTeam.git $HOME/ClawTeam
+          else
+            cd $Welcome to Termux
 
 Docs:       https://doc.termux.com
 Community:  https://community.termux.com
