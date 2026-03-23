@@ -1,4 +1,79 @@
-name: Deer-Flow Full Setup
+name: Deer-Flow + Crypto Analyst Setup
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 'lts/*'
+
+    - name: Install system dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y git python3-pip nano curl build-essential libffi-dev
+
+    - name: Create necessary Deer-Flow folders
+      run: |
+        mkdir -p ~/deer-flow/agents_beta/crypto_analyst
+        mkdir -p ~/deer-flow/scripts
+        mkdir -p ~/deer-flow/reports
+        mkdir -p ~/deer-flow/backend
+        mkdir -p ~/deer-flow/frontend
+
+    - name: Clone or update ClawTeam repo
+      run: |
+        if [ ! -d "$HOME/ClawTeam" ]; then
+          echo " Cloning ClawTeam repository..."
+          git clone https://github.com/HKUDS/ClawTeam.git $HOME/ClawTeam
+        else
+          echo " ClawTeam exists, pulling latest changes..."
+          cd $HOME/ClawTeam && git pull
+        fi
+
+    - name: Install Poetry
+      run: |
+        python3 -m pip install --user poetry
+        export PATH="$HOME/.local/bin:$PATH"
+
+    - name: Install Deer-Flow backend dependencies
+      run: |
+        cd ~/deer-flow/backend
+        if [ -f pyproject.toml ]; then
+          poetry install
+        else
+          echo "⚠️ No pyproject.toml found, skipping backend install"
+        fi
+
+    - name: Install Deer-Flow frontend dependencies
+      run: |
+        cd ~/deer-flow/frontend
+        if [ -f package.json ]; then
+          npm install
+        else
+          echo "⚠️ No package.json found, skipping frontend install"
+        fi
+
+    - name: Install Playwright
+      run: |
+        python3 -m pip install --user playwright
+        python3 -m playwright install chromiumname: Deer-Flow Full Setup
 
 on:
   push:
