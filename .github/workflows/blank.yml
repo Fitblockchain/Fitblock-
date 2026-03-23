@@ -1,4 +1,35 @@
-name: Fitblock Workflow
+Edit (pencil icon)name: Fitblock AI Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  fitblock:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install requests pandas numpy
+
+      - name: Run crypto analysis
+        run: |
+          python <<EOF
+import requests
+print("Running Fitblock Crypto Analyzer")
+data = requests.get("https://api.coingecko.com/api/v3/ping").json()
+print("API status:", data)
+EOFname: Fitblock Workflow
 
 on:
   push:
