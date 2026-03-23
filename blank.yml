@@ -1,4 +1,57 @@
 #!/bin/bash
+set -e  # Exit immediately if a command fails
+
+echo "🦌 Starting Deer-Flow full setup for Termux..."
+
+# -------------------------
+# Keep Termux awake
+# -------------------------
+termux-wake-lock
+
+# -------------------------
+# Directories & logs
+# -------------------------
+DEERFLOW_DIR="$HOME/deer-flow"
+LOG_DIR="$DEERFLOW_DIR/logs"
+mkdir -p "$LOG_DIR"
+
+# -------------------------
+# Update Termux & install essentials
+# -------------------------
+echo "🔹 Updating Termux & installing essential packages..."
+pkg update -y && pkg upgrade -y
+pkg install -y git python clang make curl nodejs-lts libffi build-essential nano
+
+# -------------------------
+# Clone Deer-Flow repo & submodules
+# -------------------------
+cd $HOME
+if [ ! -d "deer-flow" ]; then
+    git clone https://github.com/bytedance/deer-flow.git $DEERFLOW_DIR
+fi
+cd $DEERFLOW_DIR
+git pull || true
+git submodule update --init --recursive || true
+
+# -------------------------
+# Install Poetry & Python dependencies
+# -------------------------
+echo "🔹 Installing Poetry..."
+pip install --user poetry
+export PATH="$HOME/.local/bin:$PATH"
+poetry self add poetry-plugin-shell || true
+poetry env use $(which python3) || true
+
+# Backend setup
+cd backend
+if [ -d "deerflow-harness" ]; then
+    poetry add ./deerflow-harness
+fi
+echo "🔹 Installing backend dependencies..."
+poetry install || echo "⚠️ Check pyproject.toml if dependencies fail"
+
+# Frontend setup
+cd ../frontend#!/bin/bash
 set -e  # Exit on any error
 
 echo "🦌 Starting full Deer-Flow setup for Termux..."
