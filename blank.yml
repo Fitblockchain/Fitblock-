@@ -1,4 +1,6 @@
-name: Crypto Analyst + ClawTeam Setup
+mkdir -p ~/deer-flow/agents_beta/crypto_analyst
+mkdir -p ~/deer-flow/scripts
+mkdir -p ~/deer-flow/reportsname: Crypto Analyst + ClawTeam Setup
 
 on:
   push:
