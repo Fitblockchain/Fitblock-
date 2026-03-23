@@ -1,4 +1,81 @@
-name: Deer-Flow + Crypto Analyst Setup
+name: Deer-Flow + ClawTeam Full Setup
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.13'
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '24'
+
+    - name: Install system dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y git curl build-essential libffi-dev nano
+
+    - name: Create Deer-Flow folders
+      run: |
+        mkdir -p ~/deer-flow/agents_beta/crypto_analyst
+        mkdir -p ~/deer-flow/scripts
+        mkdir -p ~/deer-flow/reports
+        mkdir -p ~/deer-flow/backend
+        mkdir -p ~/deer-flow/frontend
+
+    - name: Clone or update ClawTeam repo
+      run: |
+        if [ ! -d "$HOME/ClawTeam" ]; then
+          git clone https://github.com/HKUDS/ClawTeam.git $HOME/ClawTeam
+        else
+          cd $HOME/ClawTeam && git pull
+
+    - name: Clone or update Deer-Flow repo
+      run: |
+        if [ ! -d "$HOME/deer-flow" ]; then
+          git clone https://github.com/bytedance/deer-flow.git $HOME/deer-flow
+        else
+          cd $HOME/deer-flow && git pull
+        git submodule update --init --recursive || true
+
+    - name: Install Poetry
+      run: |
+        python -m pip install --user poetry
+        export PATH="$HOME/.local/bin:$PATH"
+
+    - name: Install Deer-Flow Python dependencies
+      run: |
+        cd ~/deer-flow/backend
+        poetry install
+
+    - name: Install Deer-Flow frontend dependencies
+      run: |
+        cd ~/deer-flow/frontend
+        npm install
+
+    - name: Install Playwright for research agents
+      run: |
+        cd ~/deer-flow
+        poetry run pip install playwright
+        poetry run playwright install chromium
+
+    - name: Setup .env
+      run: |
+        cat > ~/deer-flow/.envname: Deer-Flow + Crypto Analyst Setup
 
 on:
   push:
