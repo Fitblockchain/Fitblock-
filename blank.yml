@@ -1,4 +1,1117 @@
-name: Crypto Analyst + ClawTeam Agent
+Welcome to Termux
+
+Docs:       https://doc.termux.com
+Community:  https://community.termux.com
+
+Working with packages:
+ - Search:  pkg search <query>
+ - Install: pkg install <package>
+ - Upgrade: pkg upgrade
+
+Report issues at https://bugs.termux.com
+~/deer-flow/frontend $ #!/bin/bash
+~/deer-flow/frontend $ set -e
+~/deer-flow/frontend $
+~/deer-flow/frontend $ echo "🦌 Starting Deer-Flow
+ setup for Termux..."
+🦌 Starting Deer-Flow setup for Termux...
+~/deer-flow/frontend $
+~/deer-flow/frontend $ # -------------------------
+----
+ager)
+# -----------------------------
+echo "🔹 Installing Poe~/deer-flow/frontend $ # 1️⃣ 
+Update Termux & install essentials
+~/deer-flow/frontend $ # -------------------------
+----
+~/deer-flow/frontend $ echo "🔹 Updating Termux & 
+installing essential packages..."
+🔹 Updating Termux & installing essential packages
+...
+~/deer-flow/frontend $ pkg update -y && pkg upgrad
+e -y
+Hit:1 https://termux.net stable InRelease
+All packages are up to date.
+Hit:1 https://termux.net stable InRelease
+All packages are up to date.
+Summary:
+  Upgrading: 0, Installing: 0, Removing: 0, Not Up
+grading: 0
+~/deer-flow/frontend $ pkg install -y git python c
+lang make curl nodejs-lts libffi
+git is already the newest version (2.53.0).
+python is already the newest version (3.13.12-5).
+clang is already the newest version (21.1.8-2).
+make is already the newest version (4.4.1-1).
+curl is already the newest version (8.19.0).
+nodejs-lts is already the newest version (24.14.0)
+.
+libffi is already the newest version (3.4.7-2).
+Summary:
+  Upgrading: 0, Installing: 0, Removing: 0, Not Up
+grading: 0
+~/deer-flow/frontend $
+~/deer-flow/frontend $ # -------------------------
+----
+~/deer-flow/frontend $ # 2️⃣ Clone Deer-Flow repo & 
+submodules
+~/deer-flow/frontend $ # -------------------------
+----
+~/deer-flow/frontend $ echo "🔹 Cloning Deer-Flow 
+repository..."
+🔹 Cloning Deer-Flow repository...
+~/deer-flow/frontend $ cd ~
+~ $ if [ ! -d "deer-flow" ]; then
+>     git clone https://github.com/bytedance/deer-
+flow.git
+> fi
+~ $ cd deer-flow
+~/deer-flow $ git submodule update --init --recurs
+ive || true
+~/deer-flow $
+~/deer-flow $ # -----------------------------
+~/deer-flow $ # 3️⃣ Install Poetry (Python dependenc
+y manager)
+~/deer-flow $ # -----------------------------
+~/deer-flow $ echo "🔹 Installing Poetry..."
+🔹 Installing Poetry...
+~/deer-flow $ pip install --user poetry
+Requirement already satisfied: poetry in /data/dat
+a/com.termux/files/home/.local/lib/python3.13/site
+-packages (2.3.2)
+Requirement already satisfied: build<2.0.0,>=1.2.1
+ in /data/data/com.termux/files/home/.local/lib/py
+thon3.13/site-packages (from poetry) (1.4.0)
+Requirement already satisfied: cachecontrol<0.15.0
+,>=0.14.0 in /data/data/com.termux/files/home/.loc
+al/lib/python3.13/site-packages (from cachecontrol
+[filecache]<0.15.0,>=0.14.0->poetry) (0.14.4)
+Requirement already satisfied: cleo<3.0.0,>=2.1.0 
+in /data/data/com.termux/files/home/.local/lib/pyt
+hon3.13/site-packages (from poetry) (2.1.0)
+Requirement already satisfied: dulwich<2,>=0.25.0 
+in /data/data/com.termux/files/home/.local/lib/pyt
+hon3.13/site-packages (from poetry) (1.1.0)
+Requirement already satisfied: fastjsonschema<3.0.
+0,>=2.18.0 in /data/data/com.termux/files/home/.lo
+cal/lib/python3.13/site-packages (from poetry) (2.
+21.2)
+Requirement already satisfied: findpython<0.8.0,>=
+0.6.2 in /data/data/com.termux/files/home/.local/l
+ib/python3.13/site-packages (from poetry) (0.7.1)
+Requirement already satisfied: installer<0.8.0,>=0
+.7.0 in /data/data/com.termux/files/home/.local/li
+b/python3.13/site-packages (from poetry) (0.7.0)
+Requirement already satisfied: keyring<26.0.0,>=25
+.1.0 in /data/data/com.termux/files/home/.local/li
+b/python3.13/site-packages (from poetry) (25.7.0)
+Requirement already satisfied: packaging>=24.2 in 
+/data/data/com.termux/files/home/.local/lib/python
+3.13/site-packages (from poetry) (26.0)
+Requirement already satisfied: pbs-installer>=2025
+.6.10 in /data/data/com.termux/files/home/.local/l
+ib/python3.13/site-packages (from pbs-installer[do
+wnload,install]>=2025.6.10->poetry) (2026.3.20)
+Requirement already satisfied: pkginfo<2.0,>=1.12 
+in /data/data/com.termux/files/home/.local/lib/pyt
+hon3.13/site-packages (from poetry) (1.12.1.2)
+Requirement already satisfied: platformdirs<5,>=3.
+0.0 in /data/data/com.termux/files/usr/lib/python3
+.13/site-packages (from poetry) (4.9.4)
+Requirement already satisfied: poetry-core==2.3.1 
+in /data/data/com.termux/files/home/.local/lib/pyt
+hon3.13/site-packages (from poetry) (2.3.1)
+Requirement already satisfied: pyproject-hooks<2.0
+.0,>=1.0.0 in /data/data/com.termux/files/home/.lo
+cal/lib/python3.13/site-packages (from poetry) (1.
+2.0)
+Requirement already satisfied: requests<3.0,>=2.26
+ in /data/data/com.termux/files/home/.local/lib/py
+thon3.13/site-packages (from poetry) (2.32.5)
+Requirement already satisfied: requests-toolbelt<2
+.0.0,>=1.0.0 in /data/data/com.termux/files/home/.
+local/lib/python3.13/site-packages (from poetry) (
+1.0.0)
+Requirement already satisfied: shellingham<2.0,>=1
+.5 in /data/data/com.termux/files/home/.local/lib/
+python3.13/site-packages (from poetry) (1.5.4)
+Requirement already satisfied: tomlkit<1.0.0,>=0.1
+1.4 in /data/data/com.termux/files/home/.local/lib
+/python3.13/site-packages (from poetry) (0.14.0)
+Requirement already satisfied: trove-classifiers>=
+2022.5.19 in /data/data/com.termux/files/home/.loc
+al/lib/python3.13/site-packages (from poetry) (202
+6.1.14.14)
+Requirement already satisfied: virtualenv>=20.26.6
+ in /data/data/com.termux/files/usr/lib/python3.13
+/site-packages (from poetry) (21.2.0)
+Requirement already satisfied: msgpack<2.0.0,>=0.5
+.2 in /data/data/com.termux/files/home/.local/lib/
+python3.13/site-packages (from cachecontrol<0.15.0
+,>=0.14.0->cachecontrol[filecache]<0.15.0,>=0.14.0
+->poetry) (1.1.2)
+Requirement already satisfied: filelock>=3.8.0 in 
+/data/data/com.termux/files/usr/lib/python3.13/sit
+e-packages (from cachecontrol[filecache]<0.15.0,>=
+0.14.0->poetry) (3.25.2)
+Requirement already satisfied: crashtest<0.5.0,>=0
+.4.1 in /data/data/com.termux/files/home/.local/li
+b/python3.13/site-packages (from cleo<3.0.0,>=2.1.
+0->poetry) (0.4.1)
+Requirement already satisfied: rapidfuzz<4.0.0,>=3
+.0.0 in /data/data/com.termux/files/home/.local/li
+b/python3.13/site-packages (from cleo<3.0.0,>=2.1.
+0->poetry) (3.14.3)
+Requirement already satisfied: urllib3>=2.2.2 in /
+data/data/com.termux/files/home/.local/lib/python3
+.13/site-packages (from dulwich<2,>=0.25.0->poetry
+) (2.6.3)
+Requirement already satisfied: jaraco.classes in /
+data/data/com.termux/files/home/.local/lib/python3
+.13/site-packages (from keyring<26.0.0,>=25.1.0->p
+oetry) (3.4.0)
+Requirement already satisfied: jaraco.functools in
+ /data/data/com.termux/files/home/.local/lib/pytho
+n3.13/site-packages (from keyring<26.0.0,>=25.1.0-
+>poetry) (4.4.0)
+Requirement already satisfied: jaraco.context in /
+data/data/com.termux/files/home/.local/lib/python3
+.13/site-packages (from keyring<26.0.0,>=25.1.0->p
+oetry) (6.1.2)
+Requirement already satisfied: charset_normalizer<
+4,>=2 in /data/data/com.termux/files/home/.local/l
+ib/python3.13/site-packages (from requests<3.0,>=2
+.26->poetry) (3.4.6)
+Requirement already satisfied: idna<4,>=2.5 in /da
+ta/data/com.termux/files/home/.local/lib/python3.1
+3/site-packages (from requests<3.0,>=2.26->poetry)
+ (3.11)
+Requirement already satisfied: certifi>=2017.4.17 
+in /data/data/com.termux/files/home/.local/lib/pyt
+hon3.13/site-packages (from requests<3.0,>=2.26->p
+oetry) (2026.2.25)
+Requirement already satisfied: httpx<1,>=0.27.0 in
+ /data/data/com.termux/files/home/.local/lib/pytho
+n3.13/site-packages (from pbs-installer[download,i
+nstall]>=2025.6.10->poetry) (0.28.1)
+Requirement already satisfied: zstandard>=0.21.0 i
+n /data/data/com.termux/files/home/.local/lib/pyth
+on3.13/site-packages (from pbs-installer[download,
+install]>=2025.6.10->poetry) (0.25.0)
+Requirement already satisfied: anyio in /data/data
+/com.termux/files/home/.local/lib/python3.13/site-
+packages (from httpx<1,>=0.27.0->pbs-installer[dow
+nload,install]>=2025.6.10->poetry) (4.12.1)
+Requirement already satisfied: httpcore==1.* in /d
+ata/data/com.termux/files/home/.local/lib/python3.
+13/site-packages (from httpx<1,>=0.27.0->pbs-insta
+ller[download,install]>=2025.6.10->poetry) (1.0.9)
+Requirement already satisfied: h11>=0.16 in /data/
+data/com.termux/files/home/.local/lib/python3.13/s
+ite-packages (from httpcore==1.*->httpx<1,>=0.27.0
+->pbs-installer[download,install]>=2025.6.10->poet
+ry) (0.16.0)
+Requirement already satisfied: distlib<1,>=0.3.7 i
+n /data/data/com.termux/files/usr/lib/python3.13/s
+ite-packages (from virtualenv>=20.26.6->poetry) (0
+.4.0)
+Requirement already satisfied: python-discovery>=1
+ in /data/data/com.termux/files/usr/lib/python3.13
+/site-packages (from virtualenv>=20.26.6->poetry) 
+(1.2.0)
+Requirement already satisfied: more-itertools in /
+data/data/com.termux/files/home/.local/lib/python3
+.13/site-packages (from jaraco.classes->keyring<26
+.0.0,>=25.1.0->poetry) (10.8.0)
+~/deer-flow $ export PATH="$HOME/.local/bin:$PATH"
+~/deer-flow $
+~/deer-flow $ # Optional: add shell plugin if need
+ed
+~/deer-flow $ poetry self add poetry-plugin-shell 
+|| true
+The following packages are already present in the 
+pyproject.toml and will be skipped:
+
+  - poetry-plugin-shell
+
+If you want to update it to the latest compatible 
+version, you can use `poetry self update`.
+If you prefer to upgrade it to the latest availabl
+e version, you can use `poetry self add package@la
+test`.
+
+Nothing to add.
+~/deer-flow $ poetry env use python3 || true
+
+Poetry could not find a pyproject.toml file in /da
+ta/data/com.termux/files/home/deer-flow or its par
+ents
+~/deer-flow $
+~/deer-flow $ # -----------------------------
+~/deer-flow $ # 4️⃣ Backend setup
+~/deer-flow $ # -----------------------------
+~/deer-flow $ echo "🔹 Setting up backend..."
+🔹 Setting up backend...
+~/deer-flow $ cd backend
+~/deer-flow/backend $
+~/deer-flow/backend $ # Install local deerflow-har
+ness if present
+~/deer-flow/backend $ if [ -d "deerflow-harness" ]
+; then
+>     cd deerflow-harness
+>     pip install --user -e .
+>     cd ..
+> else
+> #!/bin/bash
+
+if [ ! -d "deer-flow" ]; then
+    git clone https://github.com/bytedance/deer-fl
+ow.git
+> set -e  # Exit immediately if a command fails
+>
+> echo "🦌 Starting Deer-Flow setup for Termux..."
+>
+> # -------------------------
+> # 1️⃣ Update Termux & install essentials
+> # -------------------------
+> echo "🔹 Updating Termux & installing essential 
+packages..."
+ add poetry-plugin-shell || true
+
+# Ensure Poetry uses Python 3> pkg update -y && pk
+g upgrade -y
+> pkg install -y git python clang make curl nodejs
+-lts libffi
+>
+> # -------------------------
+> # 2️⃣ Clone Deer-Flow repo & submodules
+> # -------------------------
+> echo "🔹 Cloning Deer-Flow repository..."
+> cd ~
+> if [ ! -d "deer-flow" ]; then
+>     git clone https://github.com/bytedance/deer-
+flow.git
+> fi
+> cd deer-flow
+> git submodule update --init --recursive || true
+>
+> # -------------------------
+> # 3️⃣ Install Poetry (Python dependency manager)
+> # -------------------------
+> echo "🔹 Installing Poetry..."
+> pip install --user poetry
+> export PATH="$HOME/.local/bin:$PATH"
+>
+> # Optional: add shell plugin if needed
+> poetry self add poetry-plugin-shell || true
+>
+> # Ensure Poetry uses Python 3
+> #!/bin/bash
+> set -e  # Exit immediately if a command fails
+>
+> echo "🦌 Starting Deer-Flow setup for Termux..."
+>
+> # -------------------------
+> # 1️⃣ Update Termux & install essentials
+> # -------------------------
+> echo "🔹 Updating Termux & installing essential 
+packages..."
+> pkg update -y && pkg upgrade -y
+> pkg install -y git python clang make curl nodejs
+-lts libffi
+>
+> # -------------------------
+> # 2️⃣ Clone Deer-Flow repo & submodules
+> # -------------------------
+> echo "🔹 Cloning Deer-Flow repository..."
+> cd ~
+> if [ ! -d "deer-flow" ]; then
+>     git clone https://github.com/bytedance/deer-
+flow.git
+> fi
+> cd deer-flow
+> git submodule update --init --recursive || true
+>
+> # -------------------------
+> # 3️⃣ Install Poetry (Python dependency manager)
+> # -------------------------
+> echo "🔹 Installing Poetry..."
+> pip install --user poetry
+> export PATH="$HOME/.local/bin:$PATH"
+>
+> # Optional: add shell plugin
+> poetry self add poetry-plugin-shell || true
+>
+> # -------------------------
+> # 4️⃣ Backend setup
+> # -------------------------
+> echo "🔹 Setting up backend..."
+> cd backend
+>
+> # Optional: install local deerflow-harness if pr
+esent
+> if [ -d "deerflow-harness" ]; then
+>     cd deerflow-harness
+>     pip install --user -e .
+>     cd ..
+> fi
+>
+> # Install backend dependencies via Poetry
+> poetry install
+>
+> # Ensure Poetry uses Python 3
+> poetry env use python3 || true
+>
+> echo "✅ Deer-Flow backend setup complete!"
+>
+> # -------------------------
+> # 5️⃣ Frontend setup (
+> #!/bin/bash
+> set -e  # Exit immediately if a command fails
+>
+> echo "🦌 Starting Deer-Flow setup for Termux..."
+>
+> # -------------------------
+> # 1️⃣ Update Termux & install essentials
+> # -------------------------
+> echo "🔹 Updating Termux & installing essential 
+packages..."
+> pkg update -y && pkg upgrade -y
+> pkg install -y git python clang make curl nodejs
+-lts libffi
+>
+> # -------------------------
+> # 2️⃣ Clone Deer-Flow repository & submodules
+> # -------------------------
+> echo "🔹 Cloning Deer-Flow repository..."
+> cd ~
+> if [ ! -d "deer-flow" ]; then
+>     git clone https://github.com/bytedance/deer-
+flow.git
+> fi
+> cd deer-flow
+> git submodule update --init --recursive || true
+>
+> # -------------------------
+> # 3️⃣ Install Poetry (Python dependency manager)
+> # -------------------------
+> echo "🔹 Installing Poetry..."
+> pip install --user poetry
+> export PATH="$HOME/.local/bin:$PATH"
+>
+> # Optional: add shell plugin
+> poetry self add poetry-plugin-shell || true
+>
+> # -------------------------
+> # 4️⃣ Backend setup
+> # -------------------------
+> echo "🔹 Setting up backend..."
+> cd backend
+>
+> # Optional: install local deerflow-harness if pr
+esent
+> if [ -d "deerflow-harness" ]; then
+>     cd deerflow-harness
+>     pip install --user -e .
+>     cd ..
+> fi
+>
+> # Install backend dependencies via Poetry
+> poetry install
+>
+> # Ensure Poetry uses Python 3
+> poetry env use python3 || true
+>
+> echo "✅ Deer-Flow backend setup complete!"
+>
+> # -------------------------
+> # 5️⃣ Frontend setup
+> # -------------------------
+> echo "🔹 Setting up frontend..."
+> cd ../frontend
+>
+> # Install frontend dependencies
+> npm install
+>
+> echo "✅ Deer-Flow frontend setup complete!"
+>
+> echo "🎉 Deer-Flow setup finished successfully!"
+> #!/bin/bash
+> set -e  # Exit immediately if a command fails
+in:$PATH"
+
+# Optional: add shell plugin if needed
+poetry self add poetry-plugin>
+etry uses Python 3
+poetry e> echo "🦌 Starting Deer-Flow full setup f
+or Termux..."
+nstall backend dep>
+> # -------------------------
+> # 1️⃣ Update Termux & install essentials
+> # -------------------------
+> echo "🔹 Updating Termux & installing essential 
+packages..."
+> pkg update -y && pkg upgrade -y
+> pkg install -y git python clang make curl nodejs
+-lts libffi build-essential
+>
+> # -------------------------
+> # 2️⃣ Clone Deer-Flow repository & submodules
+> # -------------------------
+> echo "🔹 Cloning Deer-Flow repository..."
+> cd ~
+> if [ ! -d "deer-flow" ]; then
+>     git clone https://github.com/bytedance/deer-
+flow.git
+> fi
+> cd deer-flow
+> git submodule update --init --recursive || true
+>
+> # -------------------------
+> # 3️⃣ Install Poetry (Python dependency manager)
+> # -------------------------
+> echo "🔹 Installing Poetry..."
+> pip install --user poetry
+> export PATH="$HOME/.local/bin:$PATH"
+>
+> # Optional: add shell plugin if needed
+> poetry self add poetry-plugin-shell || true
+>
+> # Ensure Poetry uses Python 3
+> poetry env use $(which python3) || true
+>
+> # -------------------------
+> # 4️⃣ Backend setup
+> # -------------------------
+> echo "🔹 Setting up backend..."
+> cd backend
+>
+> # Optional: install local deerflow-harness if pr
+esent
+> if [ -d "deerflow-harness" ]; then
+>     cd deerflow-harness
+>     pip install --user -e .
+>     cd ..
+> fi
+>
+> # Install backend dependencies via Poetry
+> poetry install
+>
+> echo "✅ Deer-Flow backend setup complete!"
+>
+> # -------------------------
+> # 5️⃣ Frontend setup
+> # -------------------------
+> echo "🔹 Setting up frontend..."
+> cd ../frontend
+>
+> # Install frontend dependencies
+> npm install
+>
+> echo "✅ Deer-Flow frontend setup complete!"
+>
+> echo "🎉 Deer-Flow setup finished successfully!"
+> #!/bin/bash
+> set -e  # Exit immediately if a command fails
+>
+> echo "🦌 Starting Deer-Flow full setup for Termu
+x..."
+>
+> # -------------------------
+> # 1️⃣ Update Termux & install essentials
+> # -------------------------
+> echo "🔹 Updating Termux & installing essential 
+packages..."
+> pkg update -y && pkg upgrade -y
+> pkg install -y git python clang make curl nodejs
+-lts libffi build-essential
+>
+> # -------------------------
+> # 2️⃣ Clone Deer-Flow repository & submodules
+> # -------------------------
+> echo "🔹 Cloning Deer-Flow repository..."
+> cd ~
+> if [ ! -d "deer-flow" ]; then
+>     git clone https://github.com/bytedance/deer-
+flow.git
+> fi
+> cd deer-flow
+> git submodule update --init --recursive || true
+>
+> # -------------------------
+> # 3️⃣ Install Poetry (Python dependency manager)
+> # -------------------------
+> echo "🔹 Installing Poetry..."
+> pip install --user poetry
+> export PATH="$HOME/.local/bin:$PATH"
+>
+> # Optional: add shell plugin if needed
+> poetry self add poetry-plugin-shell || true
+>
+> # Ensure Poetry uses Python 3
+> poetry env use $(which python3) || true
+>
+> # -------------------------
+> # 4️⃣ Backend setup
+> # -------------------------
+> echo "🔹 Setting up backend..."
+> cd backend
+>
+> # Optional: install local deerflow-harness if pr
+esent
+> if [ -d "deerflow-harness" ]; then
+>     cd deerflow-harness
+>     pip install --user -e .
+>     cd ..
+> fi
+>
+> # Install backend dependencies via Poetry
+> poetry install
+>
+> echo "✅ Deer-Flow backend setup complete!"
+>
+> # -------------------------
+> # 5️⃣ Frontend setup
+> # -------------------------
+> echo "🔹 Setting up frontend..."
+> cd ../frontend
+>
+> # Install frontend dependencies
+> npm install
+>
+> echo "✅ Deer-Flow frontend setup complete!"
+>
+> echo "🎉 Deer-Flow setup finished successfully!"
+> #!/bin/bash
+ain.py with actual backend entry point
+BACKEND_PID=$!
+
+# -------------------------
+# Frontend
+# -------------------------
+echo "🔹 Starting frontend..."
+cd ~/deer-flow/frontend
+# Start frontend on port 2026, accessible from loc
+alhost
+npm run dev -- --host 0.0.0.0 --port 2026 &
+FRONTEND_PID=$!
+
+# -------------------------
+# Show info to user
+# -------------------------
+echo "✅ Deer-Flow is running!"
+echo "Backend PID: $BACKEND_PID"
+echo "Frontend PID: $FRONTEND_PID"
+echo "Open your browser at: http://localhost:2026/
+"
+
+# Wait for both processes to exit (optional)
+wait $BACKEND_PID $FRONTEND_PID> set -e
+>
+> echo "🦌 Starting Deer-Flow backend and frontend
+..."
+>
+> # -------------------------
+> # Backend
+> # -------------------------
+> echo "🔹 Starting backend..."
+> cd ~/deer-flow/backend
+> # Use Poetry to run the backend in the backgroun
+d
+> poetry run python main.py &   # Replace main.py 
+with actual backend entry point
+> BACKEND_PID=$!
+>
+> # -------------------------
+> # Frontend
+> # -------------------------
+> echo "🔹 Starting frontend..."
+> cd ~/deer-flow/frontend
+> # Start frontend on port 2026, accessible from l
+ocalhost
+> npm run dev -- --host 0.0.0.0 --port 2026 &
+> FRONTEND_PID=$!
+>
+> # -------------------------
+> # Show info to user
+> # -------------------------
+> echo "✅ Deer-Flow is running!"
+> echo "Backend PID: $BACKEND_PID"
+> echo "Frontend PID: $FRONTEND_PID"
+> echo "Open your browser at: http://localhost:202
+6/"
+>
+> # Wait for both processes to exit (optional)
+> wait $BACKEND_PID $FRONTEND_PID
+> #!/bin/bash
+> set -e  # Exit immediately if a command fails
+>
+> echo "🦌 Starting Deer-Flow setup for Termux..."
+>
+> # -------------------------
+> # 1️⃣ Update Termux & install essentials
+etry uses Python 3
+poetry env use python || true
+
+# -------------------------
+# 4️⃣ Install Python dependencies
+# -------------------------
+echo "🔹 Installing Deer-Flow Python dependencies.
+.."
+poetry install
+
+# -------------------------
+# 5️⃣ Install Pla> # -------------------------
+all playwright
+poetry run playwright install chromium
+
+# -------------------------> echo "🔹 Updating Ter
+mux & installing essential packages..."
+I_API_KEY=your_openai_api_key_here
+OPENAI_BASE_URL=https://api.openai.com/v1
+MODEL_NAME=gpt-4o-mini
+TEMPERATURE=0.2
+MAX_TOKENS=4000
+EOL
+
+echo "✅ .env created. Remember to replace 'your_o
+penai_api_key_here' with your actual API key."
+
+# -------------------------
+# 7️⃣ Start Deer-Flow backend
+# -------------------------
+echo "🔹 Starting > pkg update -y && pkg upgrade -
+y
+> pkg install -y git python clang make curl nodejs
+-lts libffi build-essential nano
+>
+> # -------------------------
+> # 2️⃣ Clone Deer-Flow repo & submodules
+> # -------------------------
+> echo "🔹 Cloning Deer-Flow repository..."
+> cd ~
+> if [ ! -d "deer-flow" ]; then
+>     git clone https://github.com/bytedance/deer-
+flow.git
+> fi
+> cd deer-flow
+> git submodule update --init --recursive || true
+>
+> # -------------------------
+> # 3️⃣ Install Poetry (Python dependency manager)
+> # -------------------------
+> echo "🔹 Installing Poetry..."
+> pip install --user poetry
+> export PATH="$HOME/.local/bin:$PATH"
+>
+> # Optional: add shell plugin
+> poetry self add poetry-plugin-shell || true
+>
+> # Ensure Poetry uses Python 3
+> poetry env use python || true
+>
+> # -------------------------
+> # 4️⃣ Install Python dependencies
+> # -------------------------
+> echo "🔹 Installing Deer-Flow Python dependencie
+s..."
+> poetry install
+>
+> # -------------------------
+> # 5️⃣ Install Playwright (required for research ag
+ents)
+> # -------------------------
+> echo "🔹 Installing Playwright..."
+> poetry run pip install playwright
+> poetry run playwright install chromium
+>
+> # -------------------------
+> # 6️⃣ Setup environment variables
+> # -------------------------
+> echo "🔹 Creating .env file..."
+> cat > .env <<EOL
+> OPENAI_API_KEY=your_openai_api_key_here
+> OPENAI_BASE_URL=https://api.openai.com/v1
+> MODEL_NAME=gpt-4o-mini
+> TEMPERATURE=0.2
+> MAX_TOKENS=4000
+> EOL
+>
+> echo "✅ .env created. Remember to replace 'your
+_openai_api_key_here' with your actual API key."
+>
+> # -------------------------
+> # 7️⃣ Start Deer-Flow backend
+> # -------------------------
+> echo "🔹 Starting Deer-Flow backend..."
+> poetry run python main.py
+> #!/bin/bash
+> set -e
+>
+> echo "🦌 Starting full Deer-Flow setup for Termu
+x..."
+🔹 Starting frontend..."
+npm run dev &
+
+# -------------------------
+# 6️⃣ Co>
+> # -------------------------
+> # 1️⃣ Update Termux & install essentials
+> # -------------------------
+> echo "🔹 Updating Termux & installing essential 
+packages..."
+> pkg update -y && pkg upgrade -y
+> pkg install -y git python clang make curl nodejs
+-lts libffi nano
+>
+> # -------------------------
+> # 2️⃣ Clone Deer-Flow repository & submodules
+> # -------------------------
+> echo "🔹 Cloning Deer-Flow repository..."
+> cd ~
+> if [ ! -d "deer-flow" ]; then
+>     git clone https://github.com/bytedance/deer-
+flow.git
+> fi
+> cd deer-flow
+> git submodule update --init --recursive || true
+>
+> # -------------------------
+> # 3️⃣ Install Poetry (Python dependency manager)
+> # -------------------------
+> echo "🔹 Installing Poetry..."
+> pip install --user poetry
+> export PATH="$HOME/.local/bin:$PATH"
+> poetry self add poetry-plugin-shell || true
+> poetry env use $(which python3) || true
+>
+> # -------------------------
+> # 4️⃣ Backend setup
+> # -------------------------
+> echo "🔹 Setting up backend..."
+> cd backend
+>
+> # Optional: install local deerflow-harness if pr
+esent
+> if [ -d "deerflow-harness" ]; then
+>     echo "🔹 Installing local deerflow-harness..
+."
+>     poetry add ./deerflow-harness
+> fi
+>
+> echo "🔹 Installing backend dependencies via Poe
+try..."
+> poetry install || echo "⚠️ Check pyproject.toml i
+f dependencies fail"
+>
+> echo "🔹 Starting backend..."
+> poetry run python -m app.main &
+>
+> # -------------------------
+> # 5️⃣ Frontend setup
+> # -------------------------
+> echo "🔹 Setting up frontend..."
+> cd ../frontend
+> npm install
+> echo "🔹 Starting frontend..."
+> npm run dev &
+>
+> # -------------------------
+> # 6️⃣ Completion message
+> # -------------------------
+> echo "✅ Deer-Flow setup complete!"
+> echo "Backend running at http://127.0.0.1:8000"
+> echo "Frontend running (check npm output for por
+t)"#!/bin/bash
+les
+# -------------------------
+cd ~
+if [ ! -d "deer-flow" ]; then
+    git clone https://github.com/bytedance/deer-fl
+ow.git
+fi
+cd deer-flow
+git submodule upbash: !/bin/bash: event not found
+date --init --recursive || true
+
+# -------------------------
+# 3️⃣ Install Poetry
+# -------------------------
+echo "🔹 Install> set -e
+>
+> echo "🦌 Starting Deer-Flow with auto-restart...
+"
+>
+> # -------------------------
+> # 1️⃣ Update Termux & install essentials
+> # -------------------------
+> echo "🔹 Updating Termux & installing essential 
+packages..."
+> pkg update -y && pkg upgrade -y
+> pkg install -y git python clang make curl nodejs
+-lts libffi build-essential nano
+>
+> # -------------------------
+> # 2️⃣ Clone Deer-Flow repository & submodules
+> # -------------------------
+> cd ~
+> if [ ! -d "deer-flow" ]; then
+>     git clone https://github.com/bytedance/deer-
+flow.git
+> fi
+> cd deer-flow
+> git submodule update --init --recursive || true
+>
+> # -------------------------
+> # 3️⃣ Install Poetry
+> # -------------------------
+> echo "🔹 Installing Poetry..."
+> pip install --user poetry
+> export PATH="$HOME/.local/bin:$PATH"
+> poetry self add poetry-plugin-shell || true
+> poetry env use $(which python3) || true
+>
+> # -------------------------
+> # 4️⃣ Backend setup
+> # -------------------------
+> cd backend
+> if [ -d "deerflow-harness" ]; then
+>     poetry add ./deerflow-harness
+> fi
+> poetry install || echo "⚠️ Check pyproject.toml i
+f dependencies fail"
+>
+> # -------------------------
+> # 5️⃣ Frontend setup
+> # -------------------------
+> cd ../frontend
+> npm install
+>
+> # -------------------------
+> # 6️⃣ Install Playwright
+> # -------------------------
+> poetry run pip install playwright
+> poetry run playwright install chromium
+>
+> # -------------------------
+> # 7️⃣ Setup .env
+> # -------------------------
+> if [ ! -f "../.env" ]; then
+> cat > ../.env <<EOL
+> OPENAI
+> cd ~
+> nano deerflow-bg.sh
+> #!/bin/bash
+> set -e
+>
+> echo "🦌 Starting Deer-Flow in background..."
+>
+> # Keep Termux awake
+> termux-wake-lock
+i build-essential nano
+
+# Clone Deer-Flow repo if missing
+cd ~
+if [ ! -d "deer-flow" ]; then
+    git clone https://github.com/bytedance/deer-fl
+ow.git
+fi
+cd deer-flow
+git submodule update --init --recursive || true
+
+# Install Poetry
+pip install --user poetry
+export PATH="$HOME/.local/bin:$PATH"
+poetry self add poetry-plugin-shell || true
+poetry env use $(which python3) || true
+
+# Backend setup
+cd backend
+if [ -d "deerflow-harness" ]; then
+    poetry add ./deerflow-harness
+fi
+poetry install || echo "⚠️ Check pyprojec>
+> # Update Termux & install essentials
+> pkg update -y && pkg upgrade -y
+> pkg install -y git python clang make curl nodejs
+-lts libffi build-essential nano
+>
+> # Clone Deer-Flow repo if missing
+> cd ~
+> if [ ! -d "deer-flow" ]; then
+>     git clone https://github.com/bytedance/deer-
+flow.git
+> fi
+> cd deer-flow
+> git submodule update --init --recursive || true
+>
+> # Install Poetry
+> pip install --user poetry
+> export PATH="$HOME/.local/bin:$PATH"
+> poetry self add poetry-plugin-shell || true
+> poetry env use $(which python3) || true
+>
+> # Backend setup
+> cd backend
+> if [ -d "deerflow-harness" ]; then
+>     poetry add ./deerflow-harness
+> fi
+> poetry install || echo "⚠️ Check pyproject.toml i
+f dependencies fail"
+>
+> # Frontend setup
+> cd ../frontend
+> npm install
+>
+> # Install Playwright
+> poetry run pip install playwright
+> poetry run playwright install chromium
+>
+> # Setup .env
+> cd ..
+> if [ ! -f ".env" ]; then
+> cat > .env <<EOL
+> OPENAI_API_KEY=your_openai_api_key_here
+> OPENAI_BASE_URL=https://api.openai.com/v1
+> MODEL_NAME=gpt-4o-mini
+> TEMPERATURE=0.2
+> MAX_TOKENS=4000
+> EOL
+> echo "✅ .env created. Replace 'your_openai_api_
+key_here' with your key."
+> fi
+>
+> # Launch backend & frontend in background using 
+nohup
+> mkdir -p logs
+>
+> nohup bash -c "cd backend && poetry run python -
+m app.main" > logs/backend.log 2>&1 &
+> BACKEND_PID=$!
+>
+> nohup bash -c "cd frontend && npm run dev -- --h
+ost 0.0.0.0 --port 2026" > logs/frontend.log 2>&1 
+&
+> FRONTEND_PID=$!
+>
+> echo "✅ Deer-Flow started in background!"
+> echo "Backend PID: $BACKEND_PID"
+> echo "Frontend PID: $FRONTEND_PID"
+> echo "Open your browser at http://localhost:2026
+/"
+> chmod +x deerflow-bg.sh
+> ./deerflow-bg.sh
+> #!/bin/bash
+local/bin:$PATH"
+poetry self add poetry-plugin-shell || true
+poetry env use $(which python3) || true
+
+cd backend
+if [ -d "deerflow-harness" ]; then
+    poetry add ./deerflow-harness
+fi
+poetry install || echo "⚠️ Check pyproject.toml if 
+dependencies fail"
+
+cd ../frontend
+npm install
+
+# Install Playwright
+poetry run pip install playwright
+poetry run playwright install chromium
+
+# Setup .env if missing
+cd $DEERFLOW_DIR
+if [ ! -f ".env" ]; then
+cat > .env <<EOL
+OPENAI_API_KEY=your_openai_api_key_here
+OPENAI_BASE_URL=https://api.openai.com/v1
+MODEL_NAME=gpt-4o-mini
+TEMPERATURE=0.2
+MAX_TOKENS=4000
+EOL
+echo "✅ .env created. Replace your API key."
+fi
+
+# Auto-restart loop
+while true; do
+    echo "🔹 Launching backend & frontend..."
+
+    nohup bash -c "cd backend && poetry run python
+ -m app.main" > "$LOG_DIR/backend.log" 2>&1 &
+    BACKEND_PID=$!
+
+    nohup bash -c "cd frontend && npm run dev --> 
+set -e
+>
+> echo "🦌 Starting Deer-Flow with auto-restart...
+"
+>
+> # Keep Termux awake
+> termux-wake-lock
+>
+> # Paths
+> DEERFLOW_DIR="$HOME/deer-flow"
+> LOG_DIR="$DEERFLOW_DIR/logs"
+> mkdir -p "$LOG_DIR"
+>
+> # Ensure dependencies
+> pkg update -y && pkg upgrade -y
+> pkg install -y git python clang make curl nodejs
+-lts libffi build-essential nano
+>
+> # Clone repo if missing
+> cd $HOME
+> if [ ! -d "deer-flow" ]; then
+>     git clone https://github.com/bytedance/deer-
+flow.git
+> fi
+> cd $DEERFLOW_DIR
+> git submodule update --init --recursive || true
+>
+> # Install Poetry & dependencies
+> pip install --user poetry
+> export PATH="$HOME/.local/bin:$PATH"
+> poetry self add poetry-plugin-shell || true
+> poetry env use $(which python3) || true
+>
+> cd backend
+> if [ -d "deerflow-harness" ]; then
+>     poetry add ./deerflow-harness
+> fi
+> poetry install || echo "⚠️ Check pyproject.toml i
+f dependencies fail"
+>
+> cd ../frontend
+> npm install
+>
+> # Install Playwright
+> poetry run pip install playwright
+> poetry run playwright install chromium
+>
+> # Setup .env if missing
+> cd $DEERFLOW_DIR
+> if [ ! -f ".env" ]; then
+> cat > .env <<EOL
+> OPENAI_API_KEY=your_openai_api_key_here
+> OPENAI_BASE_URL=https://api.openai.com/v1
+> MODEL_NAME=gpt-4o-mini
+> TEMPERATURE=0.2
+> MAX_TOKENS=4000
+> EOL
+> echo "✅ .env created. Replace your API key."
+> fi
+>
+> # Auto-restart loop
+> while true; do
+>     echo "🔹 Launching backend & frontend..."
+>
+>     nohup bash -c "cd backend && poetry run pyth
+on -m app.main" > "$LOG_DIR/backend.log" 2>&1 &
+>     BACKEND_PID=$!
+>
+>     nohup bash -c "cd frontend && npm run dev --
+>name: Crypto Analyst + ClawTeam Agent
 
 on:
   push:
